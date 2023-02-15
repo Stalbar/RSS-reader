@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rss_reader/services/news_model.dart';
+import 'package:rss_reader/pages/loading.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,14 +13,38 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Map data = {};
+  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    
     data = ModalRoute.of(context)!.settings.arguments as Map;
     List<NewsModel> news = data['news'];
 
     return SafeArea(
       child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: const Color.fromRGBO(0x3a, 0xaf, 0xa9, 1),
+            title: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: TextField(
+                controller:  searchController,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: const InputDecoration(
+                  hintText: "Link",
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                ),
+                onSubmitted: (string) {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Loading(url: string,)));
+                },
+              ),
+            ),
+          ),
           backgroundColor: const Color.fromRGBO(0x3a, 0xaf, 0xa9, 1),
           body: ListView.builder(
             itemCount: news.length,

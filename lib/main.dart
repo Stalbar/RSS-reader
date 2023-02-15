@@ -7,7 +7,7 @@ void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
-      '/': (context) => const Loading(),
+      '/': (context) => const Loading(url: 'https://www.onliner.by/feed'),
       '/home': (context) => const Home(),
       '/webview': (context) => const WebViewScreen(),
     }
