@@ -11,6 +11,7 @@ void main() {
       '/home': (context) => const Home(),
       '/webview': (context) => const WebViewScreen(),
     }
-  ));
+  )
+);
 }
 

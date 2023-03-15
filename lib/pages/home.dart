@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
           body: ListView.builder(
             itemCount: news.length,
             itemBuilder: (context, index) {
-              return Padding(
+              return news.length > 0 && news[0].newsTitle == 'no inet connection' ? Text('No internet connection') : Padding(
                 padding: const EdgeInsets.fromLTRB(10, 5, 5, 10),
                 child: ListTile(
                   tileColor: const Color.fromRGBO(0xde, 0xf2, 0xf1, 0.8),
